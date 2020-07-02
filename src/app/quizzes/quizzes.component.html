@@ -1,0 +1,21 @@
+<div class="ui-g-12 ui-md-12">
+  <div class="ui-g-3 ui-md-3 ui-g-offset-9">
+    <button type="text" (click)="createNewQuiz()" pButton label="New"></button>
+  </div>
+  <div class="ui-md-6 ui-g-6">
+    Unpublished
+  </div>
+  <div class="ui-md-6 ui-g-6">
+    Published
+  </div>
+</div>
+<p-dialog [(visible)]="display" [width]="600">
+  <p-header>
+    Create New Quiz
+  </p-header>
+  <edfy-quiz></edfy-quiz>
+  <p-footer>
+    <button type="text" (click)="saveQuiz()" pButton label="Save"></button>
+    <button type="text" (click)="display=false" pButton label="Cancel"></button>
+  </p-footer>
+</p-dialog>
