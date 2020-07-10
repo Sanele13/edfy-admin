@@ -14,6 +14,12 @@ import { QuizzesComponent } from './quizzes/quizzes.component'
 import {InputTextModule} from 'primeng/inputtext';
 import {DialogModule} from 'primeng/dialog';
 import { QuizComponent } from './quizzes/quiz/quiz.component';
+import {TableModule} from 'primeng/table';
+import {FormsModule} from '@angular/forms';
+import {AccordionModule} from 'primeng/accordion';
+import {EditorModule} from 'primeng/editor';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,12 +33,18 @@ import { QuizComponent } from './quizzes/quiz/quiz.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     TieredMenuModule,
     ToolbarModule,
     ButtonModule,
     TabViewModule,
     InputTextModule,
-    DialogModule
+    DialogModule,
+    TableModule,
+    FormsModule,
+    AccordionModule,
+    EditorModule,
+    AutoCompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

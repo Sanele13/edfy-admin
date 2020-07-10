@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {IQuiz, Quiz} from '../models/quiz.model';
 
 @Component({
   selector: 'app-quizzes',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quizzes.component.scss']
 })
 export class QuizzesComponent implements OnInit {
-  display: boolean;
+  quizView = false;
+  newQuiz: IQuiz;
 
   constructor() { }
 
@@ -14,10 +16,16 @@ export class QuizzesComponent implements OnInit {
   }
 
   createNewQuiz() {
-    this.display = true;
+    this.newQuiz = new Quiz();
+    this.quizView = true;
   }
 
   saveQuiz() {
-    console.log('Save quiz');
+    console.log(this.newQuiz);
+  }
+
+  cancel() {
+    this.quizView = false;
+    this.newQuiz = new Quiz();
   }
 }

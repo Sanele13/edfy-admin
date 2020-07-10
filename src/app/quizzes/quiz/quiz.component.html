@@ -6,6 +6,32 @@
   </span>
   </div>
   <div class="ui-md-12 ui-g-12">
-    Questions
+    <span class="ui-float-label">
+    <p-autoComplete id="subject" [(ngModel)]="quiz.subject" [suggestions]="filteredSubjects"
+                    field="name"
+                    (completeMethod)="searchSubjects($event)"
+                    [dropdown]="true">
+      <ng-template let-subject pTemplate="item">
+        <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
+            <div>{{subject.name}}</div>
+        </div>
+    </ng-template>
+    </p-autoComplete>
+    <label for="subject">Subject</label>
+  </span>
+  </div>
+  <div class="ui-md-12 ui-g-12">
+    <div class="ui-md-12 ui-g-12">Questions</div>
+    <p-accordion>
+      <p-accordionTab *ngFor="let question of quiz.questions, index as i" header="Question {{i + 1}}">
+        <div [innerHTML]="question.question"></div>
+      </p-accordionTab>
+    </p-accordion>
+    <p-button label="New" (onClick)="newQuestion=true"></p-button>
+    <div class="ui-md-12 ui-g-12" *ngIf="newQuestion">
+      <div class="ui-g-12">Question</div>
+      <p-editor [(ngModel)]="question.question" [style]="{'height':'320px'}"></p-editor>
+      <p-button label="Save" (onClick)="saveQuestion()"></p-button>
+    </div>
   </div>
 </div>
