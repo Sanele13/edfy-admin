@@ -15,7 +15,7 @@ export class SubjectsService {
   ) { }
 
   getSubjects(query: string): Observable<any> {
-    return this.http.get(`${environment.api}/api/subjects/search?query=${query}`).pipe(
+    return this.http.get(`${environment.api}/subjects/search?query=${query}`).pipe(
       map((result: Result) => result.data)
     );
   }

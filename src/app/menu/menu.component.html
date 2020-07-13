@@ -1,11 +1,11 @@
-<p-tabView orientation="left">
-  <p-tabPanel header="Home" rightIcon="pi pi-home">
-    Home
-  </p-tabPanel>
-  <p-tabPanel header="Quizzes" rightIcon="pi pi-question">
-    <app-quizzes></app-quizzes>
-  </p-tabPanel>
-  <p-tabPanel header="Lessons" rightIcon="pi pi-file">
-    Lessons
-  </p-tabPanel>
-</p-tabView>
+<div class="menu ui-md-2">
+  <div  (click)= "navigate('')" class="menu-item" [ngClass]="{'active': activeLink==='home'}">
+    <i class="pi pi-home"></i> Home
+  </div>
+  <div (click)= "navigate('quizzes')" class="menu-item" [ngClass]="{'active': activeLink==='quizzes'}">
+    <i class="pi pi-question"></i> Quizzes
+  </div>
+  <div (click)= "navigate('lessons')" class="menu-item" [ngClass]="{'active': activeLink==='lessons'}">
+    <i class="pi pi-folder-open"></i> Lessons
+  </div>
+</div>

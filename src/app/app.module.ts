@@ -20,6 +20,8 @@ import {AccordionModule} from 'primeng/accordion';
 import {EditorModule} from 'primeng/editor';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {HttpClientModule} from '@angular/common/http';
+import {PanelModule} from 'primeng/panel';
+import {SplitButtonModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     AccordionModule,
     EditorModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    PanelModule,
+    SplitButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

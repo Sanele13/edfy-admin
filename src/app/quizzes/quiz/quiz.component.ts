@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {IQuestion, IQuiz, Quiz} from '../../models/quiz.model';
+import {IQuestion, IQuiz, Option} from '../../models/quiz.model';
 import {SubjectsService} from '../../services/subjects.service';
 import {Subscription} from 'rxjs';
 
@@ -11,10 +11,13 @@ import {Subscription} from 'rxjs';
 export class QuizComponent implements OnInit, OnDestroy {
   displayDialog: boolean;
   question: IQuestion = {};
+  option: Option = {};
 
   selectedQuestion: IQuestion;
+  selectedOption: Option;
 
   newQuestion: boolean;
+  newOption: boolean;
 
   @Input() quiz: IQuiz;
   filteredSubjects: any[];
@@ -35,38 +38,14 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   saveQuestion(): void {
-    console.log(this.question);
-    const questions = [...this.quiz.questions];
-    if (this.newQuestion) {
-      questions.push(this.question);
+    if (this.quiz.questions) {
+      this.quiz.questions.push(this.question);
     } else {
-      questions[this.quiz.questions.indexOf(this.selectedQuestion)] = this.question;
+      this.quiz.questions = [this.question];
     }
-
-    this.quiz.questions = questions;
-    this.question = null;
+    this.quiz.questions = [...this.quiz.questions];
+    this.question = {};
     this.newQuestion = false;
-  }
-
-  deleteQuestion(): void {
-    const index = this.quiz.questions.indexOf(this.selectedQuestion);
-    this.quiz.questions = this.quiz.questions.filter((val, i) => i != index);
-    this.question = null;
-    this.displayDialog = false;
-  }
-
-  onRowSelect(event) {
-    this.newQuestion = false;
-    this.question = this.cloneQuestion(event.data);
-    this.displayDialog = true;
-  }
-
-  cloneQuestion(q: IQuestion): IQuestion {
-    const question = {};
-    for (const prop in q) {
-      question[prop] = q[prop];
-    }
-    return question;
   }
 
   searchSubjects(event): void {
@@ -75,5 +54,31 @@ export class QuizComponent implements OnInit, OnDestroy {
         this.filteredSubjects = subjects;
       }
     );
+  }
+
+  saveOption(): void {
+    if (this.question.options) {
+      this.question.options.push(this.option);
+    } else {
+      this.question.options = [this.option];
+    }
+    this.question.options = [...this.question.options];
+    this.option = {};
+    this.newOption = false;
+  }
+
+  cancel() {
+    this.newOption = false;
+  }
+
+  createNewOption(question: IQuestion) {
+    this.question = question;
+    this.newOption = true;
+    this.option = {};
+  }
+
+  createNewQuestion() {
+    this.newQuestion = true;
+    this.question = {};
   }
 }

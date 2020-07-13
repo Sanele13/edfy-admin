@@ -25,9 +25,30 @@
     <p-accordion>
       <p-accordionTab *ngFor="let question of quiz.questions, index as i" header="Question {{i + 1}}">
         <div [innerHTML]="question.question"></div>
+        <p-panel>
+          <p-header>
+            <div class="ui-helper-clearfix">
+              <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Options</span>
+              <p-button [style]="{'float':'right'}" icon="pi pi-plus" label="New" (onClick)="createNewOption(question)"></p-button>
+            </div>
+          </p-header>
+          <div>
+            <ul class="options">
+              <li *ngFor="let option of question.options" class="option">
+                {{option.text}}
+              </li>
+            </ul>
+          </div><br>
+          <input *ngIf="newOption" pInputText [(ngModel)]="option.text">
+          <p-footer *ngIf="newOption">
+            <button pButton type="button" icon="pi pi-check" label="New" class="ui-button-info" style="margin-right: .25em" (click)="saveOption()"></button>
+            <button pButton type="button" icon="pi pi-times" label="Cancel" class="ui-button-danger" (click)="cancel()"></button>
+          </p-footer>
+        </p-panel>
+
       </p-accordionTab>
     </p-accordion>
-    <p-button label="New" (onClick)="newQuestion=true"></p-button>
+    <p-button label="New" (onClick)="createNewQuestion()"></p-button>
     <div class="ui-md-12 ui-g-12" *ngIf="newQuestion">
       <div class="ui-g-12">Question</div>
       <p-editor [(ngModel)]="question.question" [style]="{'height':'320px'}"></p-editor>

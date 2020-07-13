@@ -3,10 +3,18 @@
     <button type="text" (click)="createNewQuiz()" pButton label="New"></button>
   </div>
   <div class="ui-md-6 ui-g-6">
-    Unpublished
+    <h3>Unpublished</h3>
+    <div *ngFor="let quiz of quizzes" class="ui-md-12 quiz-card">
+      <div class="ui-md-8">
+        {{quiz.title}}
+      </div>
+      <div class="ui-md-4">
+
+      </div>
+    </div>
   </div>
   <div class="ui-md-6 ui-g-6">
-    Published
+    <h3>Published</h3>
   </div>
 </div>
 <div class="ui-g-12 ui-md-12" *ngIf="quizView">
@@ -14,7 +22,7 @@
     <p-button label="Save" (onClick)="saveQuiz()"></p-button>
     <p-button label="Cancel" (onClick)="cancel()"></p-button>
   </div>
-  <edfy-quiz [quiz]="newQuiz"></edfy-quiz>
+  <edfy-quiz [quiz]="quiz"></edfy-quiz>
   <div class="ui-md-12 ui-g-12" style="text-align: right">
     <p-button label="Save" (onClick)="saveQuiz()"></p-button>
     <p-button label="Cancel" (onClick)="cancel()"></p-button>

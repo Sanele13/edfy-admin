@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuItem} from 'primeng/api';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'edfy-admin-menu',
@@ -7,25 +7,18 @@ import {MenuItem} from 'primeng/api';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  items: MenuItem[];
+  activeLink = 'home';
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.items = [{
-      label: 'File',
-      items: [
-        {label: 'New', icon: 'pi pi-fw pi-plus'},
-        {label: 'Download', icon: 'pi pi-fw pi-download'}
-      ]
-    },
-      {
-        label: 'Edit',
-        items: [
-          {label: 'Add User', icon: 'pi pi-fw pi-user-plus'},
-          {label: 'Remove User', icon: 'pi pi-fw pi-user-minus'}
-        ]
-      }];
+
   }
 
+  navigate(path: string) {
+    this.activeLink = path === '' ? 'home' : path;
+    this.router.navigateByUrl('/' + path);
+  }
 }

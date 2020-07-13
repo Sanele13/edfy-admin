@@ -2,6 +2,55 @@
 @import '~primeng/resources/themes/nova-light/theme.css';
 @import '~primeng/resources/primeng.min.css';
 
-.ui-tabview-panels {
-  height: 100vh;
+body {
+  margin: 0;
+
+  .ui-toolbar {
+    height: 64px;
+    background-color: #1c1e21 !important;
+    padding: 16px 42px 16px 24px;
+    position: fixed;
+    width: 100%;
+    -moz-transition: width 0.3s;
+    -o-transition: width 0.3s;
+    -webkit-transition: width 0.3s;
+    transition: width 0.3s;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    z-index: 999997;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+  .ui-tabview-panels {
+    border: none !important;
+  }
+
+  .menu {
+    top: 64px;
+    height: calc(100% - 64px);
+    position: absolute;
+    padding: 2em;
+    font-size: 18px;
+    background-color: #1c1e21 !important;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    .menu-item {
+      color: #b0b3b8;
+      padding: 0.5em;
+    }
+
+    .active {
+      color: #007ad9 !important;
+    }
+  }
+
 }
