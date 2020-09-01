@@ -1,30 +1,47 @@
-<div class="ui-g-12 ui-md-12" *ngIf="!quizView">
+<div class="ui-g-12 quizzes">
   <div class="ui-g-3 ui-md-3 ui-g-offset-9">
     <button type="text" (click)="createNewQuiz()" pButton label="New"></button>
   </div>
-  <div class="ui-md-6 ui-g-6">
-    <h3>Unpublished</h3>
-    <div *ngFor="let quiz of quizzes" class="ui-md-12 quiz-card">
-      <div class="ui-md-8">
-        {{quiz.title}}
-      </div>
-      <div class="ui-md-4">
+  <div class="ui-md-12 ui-g-12">
+    <p-pickList [source]="list1"
+                [target]="list2"
+                sourceHeader="Unpublished"
+                targetHeader="Published"
+                dragdrop="true"
+                [showSourceControls]="false"
+                [showTargetControls]="false"
+                [metaKeySelection]="false"
+                (onMoveToTarget)="publishQuiz($event.items)"
+                (onMoveToSource)="unpublishQuiz($event.items)"
+    >
+      <ng-template let-q pTemplate="item">
+        <div class="ui-g-12 quiz-card">
+          <div class="ui-g-11">
+            {{q.title}}
+          </div>
+          <div class="ui-g-1">
+            <div class="ui-g-12"><i class="pi pi-cog" (click)="menu.toggle($event)"></i></div>
+            <div class="ui-g-12"><i class="pi pi-pencil" (click)="editQuiz(quiz)"></i></div>
+          </div>
+        </div>
+      </ng-template>
+    </p-pickList>
+  </div>
+</div>
 
-      </div>
+<p-dialog header="New Quiz" [(visible)]="displayQuizModal">
+  <div class="ui-g-12 ui-md-12">
+    <div class="ui-md-12 ui-g-12" style="text-align: right">
+      <p-button label="Save" (onClick)="saveQuiz()"></p-button>
+      <p-button label="Cancel" (onClick)="cancel()"></p-button>
+    </div>
+    <edfy-quiz [quiz]="quiz"></edfy-quiz>
+    <div class="ui-md-12 ui-g-12" style="text-align: right">
+      <p-button label="Save" (onClick)="saveQuiz()"></p-button>
+      <p-button label="Cancel" (onClick)="cancel()"></p-button>
     </div>
   </div>
-  <div class="ui-md-6 ui-g-6">
-    <h3>Published</h3>
-  </div>
-</div>
-<div class="ui-g-12 ui-md-12" *ngIf="quizView">
-  <div class="ui-md-12 ui-g-12" style="text-align: right">
-    <p-button label="Save" (onClick)="saveQuiz()"></p-button>
-    <p-button label="Cancel" (onClick)="cancel()"></p-button>
-  </div>
-  <edfy-quiz [quiz]="quiz"></edfy-quiz>
-  <div class="ui-md-12 ui-g-12" style="text-align: right">
-    <p-button label="Save" (onClick)="saveQuiz()"></p-button>
-    <p-button label="Cancel" (onClick)="cancel()"></p-button>
-  </div>
-</div>
+</p-dialog>
+<p-menu #menu [popup]="true" [model]="items"></p-menu>
+
+<edfy-participants-modal [quiz]="quiz" [showParticipantsModal]="showParticipantsModal" (hide)="showParticipantsModal = false;"></edfy-participants-modal>

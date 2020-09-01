@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MenuService} from '../services/menu.service';
 
 @Component({
   selector: 'edfy-admin-toolbar',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private menuService: MenuService
+  ) { }
 
   ngOnInit() {
   }
 
+  openMenu() {
+    this.menuService.setState(true);
+  }
 }

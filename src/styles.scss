@@ -21,36 +21,87 @@ body {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    z-index: 999997;
+    z-index: 2;
     border: 0 !important;
     border-radius: 0 !important;
+
+    .pi-bars {
+      color: white;
+      font-size: 2em;
+    }
   }
   .ui-tabview-panels {
     border: none !important;
   }
 
   .menu {
-    top: 64px;
-    height: calc(100% - 64px);
-    position: absolute;
-    padding: 2em;
-    font-size: 18px;
-    background-color: #1c1e21 !important;
-    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
-    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-
     .menu-item {
       color: #b0b3b8;
       padding: 0.5em;
     }
-
     .active {
       color: #007ad9 !important;
     }
   }
 
+  .ui-sidebar {
+    background-color: #1c1e21 !important;
+    border: none !important;
+  }
+
+  .ui-picklist, .ui-picklist-list {
+    width: 100% !important;
+    padding: 1.5em;
+  }
+
+  .ui-picklist-list {
+    border: 1px solid #1c1e21 !important;
+  }
+
+  .ui-picklist-listwrapper {
+    width: 50%;
+  }
+
+  .ui-picklist-item {
+    height: 7em !important;
+  }
+
+  .ui-picklist-caption, .ui-dialog-titlebar {
+    background-color: #1c1e21 !important;
+    color: #b0b3b8 !important;
+    border: 1px solid #1c1e21 !important;
+  }
+
+  button[icon="pi pi-angle-double-right"], button[icon="pi pi-angle-double-left"] {
+    display: none !important;
+  }
+
+  .ui-autocomplete {
+    .ui-inputtext {
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
+      border-color: #1c1e21;
+      border-radius: 0;
+    }
+  }
+
+  .ui-picklist .ui-picklist-list .ui-picklist-item.ui-state-highlight {
+    background-color: transparent !important;
+    color: black !important;
+  }
+
+  .ui-picklist .ui-picklist-list .ui-picklist-item:not(.ui-state-highlight):hover {
+    background-color: transparent !important;
+    color: #333333;
+  }
+
+  .participants {
+    width: 50%;
+    height: 30em;
+
+    .ui-dialog-content {
+      height: 25em;
+    }
+  }
 }

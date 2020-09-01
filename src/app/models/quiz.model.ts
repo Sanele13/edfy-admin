@@ -10,6 +10,7 @@ export interface IQuiz {
   duration?: number;
   participants?: IUser[];
   subject?: string;
+  published?: boolean;
 }
 export class Quiz implements IQuiz {
 

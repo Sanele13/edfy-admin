@@ -1,19 +1,18 @@
 <div class="ui-g-12 ui-md-12">
   <div class="ui-md-12 ui-g-12">
     <span class="ui-float-label">
-    <input id="quiz-title" type="text" size="30" pInputText>
+    <input id="quiz-title" type="text" size="30" pInputText [(ngModel)]="quiz.title">
     <label for="quiz-title">Title</label>
   </span>
   </div>
   <div class="ui-md-12 ui-g-12">
     <span class="ui-float-label">
     <p-autoComplete id="subject" [(ngModel)]="quiz.subject" [suggestions]="filteredSubjects"
-                    field="name"
                     (completeMethod)="searchSubjects($event)"
                     [dropdown]="true">
       <ng-template let-subject pTemplate="item">
         <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
-            <div>{{subject.name}}</div>
+            <div>{{subject}}</div>
         </div>
     </ng-template>
     </p-autoComplete>
@@ -23,7 +22,7 @@
   <div class="ui-md-12 ui-g-12">
     <div class="ui-md-12 ui-g-12">Questions</div>
     <p-accordion>
-      <p-accordionTab *ngFor="let question of quiz.questions, index as i" header="Question {{i + 1}}">
+      <p-accordionTab *ngFor="let question of quiz?.questions, index as i" header="Question {{i + 1}}">
         <div [innerHTML]="question.question"></div>
         <p-panel>
           <p-header>

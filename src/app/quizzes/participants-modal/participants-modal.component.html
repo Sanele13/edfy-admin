@@ -1,0 +1,29 @@
+<p-dialog header="Add Participant" [(visible)]="showParticipantsModal" styleClass="participants" (onHide)="hideModal()">
+  <div class="ui-g-12 ui-md-12">
+    <p-autoComplete *ngIf="searchBy==='name'" [(ngModel)]="user" [suggestions]="filteredUsers" (completeMethod)="searchUsers($event)">
+      <ng-template let-u pTemplate="item">
+        <div class="ui-helper-clearfix">
+          <div>{{u.name}}</div>
+        </div>
+      </ng-template>
+    </p-autoComplete>
+
+    <p-autoComplete *ngIf="searchBy==='school'"
+                    [(ngModel)]="school"
+                    [suggestions]="filteredSchools"
+                    (completeMethod)="searchSchools($event)"
+                    (onSelect)="addParticipant($event)"
+    >
+      <ng-template let-u pTemplate="item">
+        <div class="ui-helper-clearfix">
+          <div>{{u.name}}</div>
+        </div>
+      </ng-template>
+    </p-autoComplete>
+
+  </div>
+  <p-footer>
+    <p-button label="Add" (onClick)="addParticipants()"></p-button>
+    <p-button label="Cancel" (onClick)="cancel()"></p-button>
+  </p-footer>
+</p-dialog>

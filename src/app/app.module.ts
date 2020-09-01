@@ -21,7 +21,8 @@ import {EditorModule} from 'primeng/editor';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {HttpClientModule} from '@angular/common/http';
 import {PanelModule} from 'primeng/panel';
-import {SplitButtonModule} from 'primeng/primeng';
+import {MenuModule, PickListModule, SidebarModule, SplitButtonModule} from 'primeng/primeng';
+import { ParticipantsModalComponent } from './quizzes/participants-modal/participants-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {SplitButtonModule} from 'primeng/primeng';
     MenuComponent,
     ToolbarComponent,
     QuizzesComponent,
-    QuizComponent
+    QuizComponent,
+    ParticipantsModalComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,10 @@ import {SplitButtonModule} from 'primeng/primeng';
     EditorModule,
     AutoCompleteModule,
     PanelModule,
-    SplitButtonModule
+    SplitButtonModule,
+    MenuModule,
+    PickListModule,
+    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
