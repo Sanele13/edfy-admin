@@ -3,6 +3,7 @@ import {IQuiz, Quiz} from '../models/quiz.model';
 import {QuizService} from '../services/quiz.service';
 import {Result} from '../models/http-response.model';
 import {MenuService} from '../services/menu.service';
+import {ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'app-quizzes',
@@ -21,7 +22,8 @@ export class QuizzesComponent implements OnInit {
 
   constructor(
     private quizService: QuizService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private dialog: ConfirmationService
   ) {
   }
 
@@ -30,9 +32,25 @@ export class QuizzesComponent implements OnInit {
     this.items = [
       {
         items: [
-          {label: 'Add Participant', icon: 'pi pi-fw pi-user-plus', command: _ => {
-            this.showParticipantsModal = true;
-            }}
+          {
+            label: 'Add Participant',
+            icon: 'pi pi-fw pi-user-plus',
+            command: _ => {
+              this.showParticipantsModal = true;
+            }
+          },
+          {
+            label: 'Delete',
+            icon: 'pi pi-fw pi-trash',
+            command: _ => {
+              this.dialog.confirm({
+                message: 'Are you sure?',
+                accept: () => {
+                  this.deleteQuiz(this.quiz);
+                }
+              });
+            }
+          }
         ]
       }];
     this.quizService.getQuizzes().subscribe(
@@ -72,6 +90,7 @@ export class QuizzesComponent implements OnInit {
   }
 
   publishQuiz(quizzes: IQuiz[]) {
+    // TODO allow publishing of multiple quizzes
     const quizToSave = quizzes[0];
     this.quizzes.find(quiz => quiz._id === quizToSave._id).published = true;
     this.quizService.saveQuiz(quizToSave).subscribe(
@@ -82,6 +101,7 @@ export class QuizzesComponent implements OnInit {
   }
 
   unpublishQuiz(quizzes: IQuiz[]) {
+    // TODO allow publishing of multiple quizzes
     const quizToSave = quizzes[0];
     this.quizzes.find(quiz => quiz._id === quizToSave._id).published = false;
     this.quizService.saveQuiz(quizToSave).subscribe(
@@ -89,5 +109,14 @@ export class QuizzesComponent implements OnInit {
         // show message
       }
     );
+  }
+
+  deleteQuiz(quiz: IQuiz) {
+    this.quizService.deleteQuiz(quiz).subscribe((result: Result) => {
+        // show message
+      },
+      error => {
+        console.log(error);
+      });
   }
 }

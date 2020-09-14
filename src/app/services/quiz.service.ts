@@ -39,4 +39,8 @@ export class QuizService {
   getQuizzes(): Observable<Result> {
     return this.http.get(`${environment.api}/quizzes`);
   }
+
+  deleteQuiz(quiz: IQuiz) {
+    return this.http.post(`${environment.api}/quizzes/delete/${quiz._id}`, {});
+  }
 }
