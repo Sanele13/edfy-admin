@@ -1,14 +1,14 @@
-import {IUser} from './user.model';
+import {User} from './user.model';
 
 export interface IQuiz {
   _id?: string;
   title?: string;
   questions?: IQuestion[];
-  author?: IUser;
+  author?: User;
   date?: string;
   expiryDate?: string;
   duration?: number;
-  participants?: IUser[];
+  participants?: User[];
   subject?: string;
   published?: boolean;
 }

@@ -1,29 +1,74 @@
 <p-dialog header="Add Participant" [(visible)]="showParticipantsModal" styleClass="participants" (onHide)="hideModal()">
-  <div class="ui-g-12 ui-md-12">
-    <p-autoComplete *ngIf="searchBy==='name'" [(ngModel)]="user" [suggestions]="filteredUsers" (completeMethod)="searchUsers($event)">
-      <ng-template let-u pTemplate="item">
-        <div class="ui-helper-clearfix">
-          <div>{{u.name}}</div>
-        </div>
-      </ng-template>
-    </p-autoComplete>
-
-    <p-autoComplete *ngIf="searchBy==='school'"
-                    [(ngModel)]="school"
-                    [suggestions]="filteredSchools"
-                    (completeMethod)="searchSchools($event)"
+  <p-inputSwitch [(ngModel)]="filterBySchool"></p-inputSwitch>
+  <div class="ui-g-12 ui-md-12" *ngIf="filterBySchool">
+    <div class="ui-inputgroup ui-fluid">
+      <p-autoComplete [(ngModel)]="schools"
+                      [suggestions]="filteredSchools"
+                      (completeMethod)="searchSchools($event)"
+                      multiple="true"
+                      placeholder="School"
+                      field="name"
+                      [autoHighlight]="true"
+      >
+        <ng-template let-school pTemplate="item">
+          <div class="ui-helper-clearfix">
+            <div>{{school.name}}</div>
+          </div>
+        </ng-template>
+      </p-autoComplete>
+      <span class="ui-inputgroup-addon" (click)="searchBySchools()"><i class="pi pi-search"></i></span>
+    </div>
+    <p-accordion *ngIf="participantSortedBySchools">
+      <ng-container *ngFor="let school of schools">
+        <p-accordionTab *ngIf="getParticipantsFromSchool(school.name).length" [header]="school.name">
+          <p-scrollPanel>
+            <div *ngFor="let participant of getParticipantsFromSchool(school.name)" class="ui-g-12 ui-md-12 ui-g-nopad">
+              <div class="ui-g-2 ui-md-2">
+                <img [src]="participant.profileImageUrl" alt="" class="avatar">
+              </div>
+              <div class="ui-g-8 ui-md-8">
+                {{participant.fullName}}
+                <br>
+                {{getLocation(participant.location)}}
+              </div>
+              <div class="ui-g-2 ui-md-2">
+                <button pButton type="button" class="ui-button-raised ui-button-rounded" icon="pi pi-times" (click)="removeParticipant(participant)"></button>
+              </div>
+            </div>
+          </p-scrollPanel>
+        </p-accordionTab>
+      </ng-container>
+    </p-accordion>
+  </div>
+  <div class="ui-g-12 ui-md-12" *ngIf="!filterBySchool">
+    <p-autoComplete field="fullName" [(ngModel)]="user" [suggestions]="filteredUsers"
+                    (completeMethod)="searchUsers($event)"
                     (onSelect)="addParticipant($event)"
+                    placeholder="Participant"
+                    [autoHighlight]="true"
     >
       <ng-template let-u pTemplate="item">
         <div class="ui-helper-clearfix">
-          <div>{{u.name}}</div>
+          <div>{{u.name}} {{u.lastName}}</div>
         </div>
       </ng-template>
     </p-autoComplete>
-
+  </div>
+  <div *ngFor="let participant of quiz.participants" class="ui-g-12 ui-md-12 ui-g-nopad">
+    <div class="ui-g-2 ui-md-2">
+      <img [src]="participant.profileImageUrl" alt="" class="avatar">
+    </div>
+    <div class="ui-g-8 ui-md-8">
+      {{participant.fullName}}
+      <br>
+      {{getLocation(participant.location)}}
+    </div>
+    <div class="ui-g-2 ui-md-2">
+      <button pButton type="button" class="ui-button-raised ui-button-rounded" icon="pi pi-times" (click)="removeParticipant(participant)"></button>
+    </div>
   </div>
   <p-footer>
-    <p-button label="Add" (onClick)="addParticipants()"></p-button>
-    <p-button label="Cancel" (onClick)="cancel()"></p-button>
+    <p-button label="Save" (onClick)="saveParticipants()"></p-button>
+    <p-button label="Cancel" (onClick)="hideModal()"></p-button>
   </p-footer>
 </p-dialog>

@@ -63,7 +63,7 @@ body {
   }
 
   .ui-picklist-item {
-    height: 7em !important;
+    height: 8em !important;
   }
 
   .ui-picklist-caption, .ui-dialog-titlebar {
@@ -90,6 +90,9 @@ body {
     background-color: transparent !important;
     color: black !important;
   }
+  .ui-picklist-list {
+    height: 30em !important;
+  }
 
   .ui-picklist .ui-picklist-list .ui-picklist-item:not(.ui-state-highlight):hover {
     background-color: transparent !important;
@@ -103,5 +106,26 @@ body {
     .ui-dialog-content {
       height: 25em;
     }
+
+    .ui-accordion-content {
+      height: 20em !important;
+
+      .ui-scrollpanel-bar {
+        background-color: #1976d2;
+        opacity: 1;
+        transition: background-color .3s;
+      }
+
+      .ui-scrollpanel {
+        border: 2px solid !important;
+        width: 100%;
+        height: 15em;
+      }
+    }
+  }
+
+  .push-down {
+    position: absolute;
+    top: 65px;
   }
 }

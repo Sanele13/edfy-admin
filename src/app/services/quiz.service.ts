@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {IQuiz} from '../models/quiz.model';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Result} from '../models/http-response.model';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,10 @@ import {Result} from '../models/http-response.model';
 export class QuizService {
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private userService: UserService
+  ) {
+  }
 
   saveQuiz(quiz: IQuiz): Observable<Result> {
     if (quiz._id) {
@@ -27,6 +30,9 @@ export class QuizService {
   }
 
   private updateQuiz(quiz: IQuiz) {
+    if (!quiz.author) {
+      quiz.author = this.userService.getLoggedInUser();
+    }
     return this.http.put(`${environment.api}/quizzes/${quiz._id}`, quiz);
   }
 

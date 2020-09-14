@@ -1,4 +1,4 @@
-<div class="ui-g-12 quizzes">
+<div class="ui-g-12 push-down">
   <div class="ui-g-3 ui-md-3 ui-g-offset-9">
     <button type="text" (click)="createNewQuiz()" pButton label="New"></button>
   </div>
@@ -20,7 +20,7 @@
             {{q.title}}
           </div>
           <div class="ui-g-1">
-            <div class="ui-g-12"><i class="pi pi-cog" (click)="menu.toggle($event)"></i></div>
+            <div class="ui-g-12"><i class="pi pi-cog" (click)="quiz=q;menu.toggle($event)"></i></div>
             <div class="ui-g-12"><i class="pi pi-pencil" (click)="editQuiz(quiz)"></i></div>
           </div>
         </div>
@@ -44,4 +44,8 @@
 </p-dialog>
 <p-menu #menu [popup]="true" [model]="items"></p-menu>
 
-<edfy-participants-modal [quiz]="quiz" [showParticipantsModal]="showParticipantsModal" (hide)="showParticipantsModal = false;"></edfy-participants-modal>
+<edfy-participants-modal [quiz]="quiz"
+                         [showParticipantsModal]="showParticipantsModal"
+                         (hide)="showParticipantsModal = false;"
+                         (onSave)="saveQuiz()"
+></edfy-participants-modal>

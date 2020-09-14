@@ -1,6 +1,12 @@
 import {School} from './school.model';
 
-export interface IUser {
+export class User {
+
+  constructor(username: string, password: string) {
+    this.username = username;
+    this.password = password;
+  }
+
   subjects?: any[];
   _id?: string;
   name?: string;
@@ -21,4 +27,7 @@ export interface IUser {
   online?: boolean;
 }
 
-export class User implements IUser {}
+export class Location {
+  city?: string;
+  province?: string;
+}

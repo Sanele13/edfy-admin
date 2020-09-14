@@ -19,10 +19,15 @@ import {FormsModule} from '@angular/forms';
 import {AccordionModule} from 'primeng/accordion';
 import {EditorModule} from 'primeng/editor';
 import {AutoCompleteModule} from 'primeng/autocomplete';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {PanelModule} from 'primeng/panel';
-import {MenuModule, PickListModule, SidebarModule, SplitButtonModule} from 'primeng/primeng';
+import {ConfirmationService, ConfirmDialogModule, MenuModule, PickListModule, SidebarModule, SplitButtonModule} from 'primeng/primeng';
 import { ParticipantsModalComponent } from './quizzes/participants-modal/participants-modal.component';
+import { LoginComponent } from './login/login.component';
+import {PasswordModule} from 'primeng/password';
+import {AuthInterceptor} from './http-interceptor';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,8 @@ import { ParticipantsModalComponent } from './quizzes/participants-modal/partici
     ToolbarComponent,
     QuizzesComponent,
     QuizComponent,
-    ParticipantsModalComponent
+    ParticipantsModalComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -53,9 +59,13 @@ import { ParticipantsModalComponent } from './quizzes/participants-modal/partici
     SplitButtonModule,
     MenuModule,
     PickListModule,
-    SidebarModule
+    SidebarModule,
+    PasswordModule,
+    ConfirmDialogModule,
+    InputSwitchModule,
+    ScrollPanelModule
   ],
-  providers: [],
+  providers: [ConfirmationService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

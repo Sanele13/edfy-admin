@@ -32,8 +32,7 @@ export class QuizzesComponent implements OnInit {
         items: [
           {label: 'Add Participant', icon: 'pi pi-fw pi-user-plus', command: _ => {
             this.showParticipantsModal = true;
-            }},
-          {label: 'Remove Participant', icon: 'pi pi-fw pi-user-minus'}
+            }}
         ]
       }];
     this.quizService.getQuizzes().subscribe(
@@ -53,7 +52,7 @@ export class QuizzesComponent implements OnInit {
   saveQuiz() {
     this.quizService.saveQuiz(this.quiz).subscribe(
       (res: Result) => {
-        this.quiz = res.data;
+        //
       }
     );
   }
@@ -69,7 +68,6 @@ export class QuizzesComponent implements OnInit {
 
   editQuiz(quiz: IQuiz) {
     this.quiz = Object.assign({}, quiz);
-    console.log(quiz);
     this.displayQuizModal = true;
   }
 
