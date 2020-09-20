@@ -28,6 +28,8 @@ import {PasswordModule} from 'primeng/password';
 import {AuthInterceptor} from './http-interceptor';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
+import { LessonsComponent } from './lessons/lessons.component';
+import { LessonComponent } from './lessons/lesson/lesson.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
     QuizzesComponent,
     QuizComponent,
     ParticipantsModalComponent,
-    LoginComponent
+    LoginComponent,
+    LessonsComponent,
+    LessonComponent
   ],
   imports: [
     BrowserModule,

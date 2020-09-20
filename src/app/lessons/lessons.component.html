@@ -1,0 +1,53 @@
+<div class="ui-g-12 push-down">
+  <div class="ui-g-3 ui-md-3 ui-g-offset-9">
+    <button type="text" (click)="createNewLesson()" pButton label="New"></button>
+  </div>
+  <div class="ui-md-12 ui-g-12">
+    <p-pickList [source]="list1"
+                [target]="list2"
+                sourceHeader="Unpublished"
+                targetHeader="Published"
+                dragdrop="true"
+                [showSourceControls]="false"
+                [showTargetControls]="false"
+                [metaKeySelection]="false"
+                (onMoveToTarget)="publishLesson($event.items)"
+                (onMoveToSource)="unpublishLesson($event.items)"
+    >
+      <ng-template let-l pTemplate="item">
+        <div class="ui-g-12 lesson-card">
+          <div class="ui-g-11">
+            {{l.title}}
+          </div>
+          <div class="ui-g-1">
+            <div class="ui-g-12"><i class="pi pi-cog" (click)="lesson=l;menu.toggle($event)"></i></div>
+            <div class="ui-g-12"><i class="pi pi-pencil" (click)="editLesson(lesson)"></i></div>
+          </div>
+        </div>
+      </ng-template>
+    </p-pickList>
+  </div>
+</div>
+
+<p-dialog header="New Lesson" [(visible)]="displayLessonModal">
+  <div class="ui-g-12 ui-md-12">
+    <div class="ui-md-12 ui-g-12" style="text-align: right">
+      <p-button label="Save" (onClick)="saveLesson()"></p-button>
+      <p-button label="Cancel" (onClick)="cancel()"></p-button>
+    </div>
+    <edfy-lesson [lesson]="lesson"></edfy-lesson>
+    <div class="ui-md-12 ui-g-12" style="text-align: right">
+      <p-button label="Save" (onClick)="saveLesson()"></p-button>
+      <p-button label="Cancel" (onClick)="cancel()"></p-button>
+    </div>
+  </div>
+</p-dialog>
+<p-menu #menu [popup]="true" [model]="items"></p-menu>
+
+<!--<edfy-participants-modal [lesson]="lesson"-->
+<!--                         [showParticipantsModal]="showParticipantsModal"-->
+<!--                         (hide)="showParticipantsModal = false;"-->
+<!--                         (onSave)="saveLesson()"-->
+<!--&gt;</edfy-participants-modal>-->
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

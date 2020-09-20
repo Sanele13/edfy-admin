@@ -32,7 +32,7 @@
                 {{getLocation(participant.location)}}
               </div>
               <div class="ui-g-2 ui-md-2">
-                <button pButton type="button" class="ui-button-raised ui-button-rounded" icon="pi pi-times" (click)="removeParticipant(participant)"></button>
+                <button *ngIf="!participantAlreadyAdded(participant)" pButton type="button" class="ui-button-raised ui-button-rounded" icon="pi pi-plus" (click)="addParticipant(participant)"></button>
               </div>
             </div>
           </p-scrollPanel>

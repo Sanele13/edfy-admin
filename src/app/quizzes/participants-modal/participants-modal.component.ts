@@ -70,6 +70,9 @@ export class ParticipantsModalComponent implements OnInit, OnChanges {
   addParticipant(value: User) {
     this.quiz.participants.push(value);
     this.user = null;
+    if (this.quiz.published) {
+      this.onSave.emit(true);
+    }
   }
 
   removeParticipant(user: User) {
@@ -108,5 +111,10 @@ export class ParticipantsModalComponent implements OnInit, OnChanges {
     } else {
       return [];
     }
+  }
+
+  participantAlreadyAdded(participant: User) {
+    const foundUser = this.quiz.participants.find(user => user._id === participant._id);
+    return !!foundUser;
   }
 }
