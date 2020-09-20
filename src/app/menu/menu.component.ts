@@ -22,5 +22,6 @@ export class MenuComponent implements OnInit {
   navigate(path: string) {
     this.activeLink = path === '' ? 'home' : path;
     this.router.navigateByUrl('/' + path);
+    this.menuService.setState(false);
   }
 }
