@@ -6,7 +6,7 @@
     <p-pickList [source]="list1"
                 [target]="list2"
                 sourceHeader="Unpublished"
-                targetHeader="Published"
+                targetHeader="Published"x
                 dragdrop="true"
                 [showSourceControls]="false"
                 [showTargetControls]="false"
@@ -21,7 +21,7 @@
           </div>
           <div class="ui-g-1">
             <div class="ui-g-12"><i class="pi pi-cog" (click)="lesson=l;menu.toggle($event)"></i></div>
-            <div class="ui-g-12"><i class="pi pi-pencil" (click)="editLesson(lesson)"></i></div>
+            <div class="ui-g-12"><i class="pi pi-pencil" (click)="lesson=l;editLesson(lesson)"></i></div>
           </div>
         </div>
       </ng-template>

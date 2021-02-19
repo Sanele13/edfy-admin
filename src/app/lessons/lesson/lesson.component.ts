@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {SubjectsService} from '../../services/subjects.service';
 import {Subscription} from 'rxjs';
 import {Lesson} from '../../models/lesson.model';
@@ -8,18 +8,24 @@ import {Lesson} from '../../models/lesson.model';
   templateUrl: './lesson.component.html',
   styleUrls: ['./lesson.component.scss']
 })
-export class LessonComponent implements OnInit, OnDestroy {
+export class LessonComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() lesson: Lesson;
   filteredSubjects: any[];
+  content: string;
 
   subjectsSubscription: Subscription;
+  editing = false;
 
   constructor(
     private subjectsService: SubjectsService
   ) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 
   ngOnDestroy(): void {
@@ -34,5 +40,10 @@ export class LessonComponent implements OnInit, OnDestroy {
         this.filteredSubjects = subjects;
       }
     );
+  }
+
+  changeContent() {
+    this.editing = !this.editing;
+    this.lesson.content = this.lesson.content.replace(/"ql-formula"/gm, '"ql-formulax"');
   }
 }

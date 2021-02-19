@@ -1,3 +1,42 @@
-<p>
-  lesson works!
-</p>
+<div class="ui-g-12 ui-md-12">
+  <div class="ui-md-12 ui-g-12">
+    <span class="ui-float-label">
+    <input id="quiz-title" type="text" size="30" pInputText [(ngModel)]="lesson.title">
+    <label for="quiz-title">Title</label>
+  </span>
+  </div>
+  <div class="ui-md-12 ui-g-12">
+    <span class="ui-float-label">
+    <p-autoComplete id="subject" [(ngModel)]="lesson.subject" [suggestions]="filteredSubjects"
+                    (completeMethod)="searchSubjects($event)"
+                    [dropdown]="true">
+      <ng-template let-subject pTemplate="item">
+        <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
+            <div>{{subject}}</div>
+        </div>
+    </ng-template>
+    </p-autoComplete>
+    <label for="subject">Subject</label>
+  </span>
+  </div>
+  <div class="ui-md-12 ui-g-12">
+    <textarea placeholder="Short Description" [(ngModel)]="lesson.shortDescription" [rows]="5" [cols]="30"
+              pInputTextarea autoResize="autoResize"></textarea>
+  </div>
+  <div class="ui-md-12 ui-g-12">
+    <textarea placeholder="Long Description" [(ngModel)]="lesson.longDescription" [rows]="5" [cols]="30" pInputTextarea
+              autoResize="autoResize"></textarea>
+  </div>
+  <div class="ui-md-12 ui-g-12" *ngIf="lesson">
+    <p-editor [(ngModel)]="lesson.content" [style]="{'height':'200px'}">
+      <p-header>
+        <span class="ql-formats">
+            <button class="ql-bold" aria-label="Bold"></button>
+            <button class="ql-italic" aria-label="Italic"></button>
+            <button class="ql-formula" aria-label="Formula"></button>
+            <button (click)="changeContent()" class="ql-source" aria-label="Source">{{editing?'Save':'Edit'}}</button>
+        </span>
+      </p-header>
+    </p-editor>
+  </div>
+</div>

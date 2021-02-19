@@ -8,7 +8,7 @@ export class Lesson {
   shortDescription: string;
   longDescription?: string;
   participants: User[];
-  content: string[];
+  content: string;
   questions?: IQuestion[];
   quizzes?: IQuiz[];
   tutorials?: any[];

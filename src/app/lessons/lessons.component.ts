@@ -119,4 +119,8 @@ export class LessonsComponent implements OnInit {
         console.log(error);
       });
   }
+
+  log() {
+    console.log(this.lesson);
+  }
 }
